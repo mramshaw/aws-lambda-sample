@@ -1,5 +1,5 @@
 env = "staging"
-region = "us-east-1"
+region = "us-west-2"
 
 # TODO Place your bucket name below
 bucket = "<your-bucket-name>"

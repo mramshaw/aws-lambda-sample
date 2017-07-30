@@ -24,7 +24,7 @@ else:
 
 session = boto3.Session(aws_access_key_id=access_key,
                         aws_secret_access_key=secret_key,
-                        region_name="us-east-1")
+                        region_name="us-west-2")
 
 client = session.client('s3')
 

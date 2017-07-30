@@ -501,7 +501,7 @@ a. Copy the `rest_api_id`, it should look something like `c8gm8f8us9`.
 
 b. In the terminal enter the following curl command and replace `<rest_api_id>` with the id you just copied.
 
-`curl -d '{"input": 4}' -H "Content-Type: application/json" -X POST https://<rest_api_id>.execute-api.us-east-1.amazonaws.com/staging/sample_lambda`
+`curl -d '{"input": 4}' -H "Content-Type: application/json" -X POST https://<rest_api_id>.execute-api.us-west-2.amazonaws.com/staging/sample_lambda`
 
 You should see `"FOUR"` as the output, just as if you had invoked the Lambda directly.
 
@@ -545,7 +545,7 @@ a. Copy the `rest_api_id`, it should look something like `c8gm8f8us9`.
 
 b. In the terminal enter the following curl command and replace `<rest_api_id>` with the id you just copied.
 
-`curl -d '{"input": 4}' -H "Content-Type: application/json" -X POST https://<rest_api_id>.execute-api.us-east-1.amazonaws.com/SAMPLE_ALIAS/sample_lambda`
+`curl -d '{"input": 4}' -H "Content-Type: application/json" -X POST https://<rest_api_id>.execute-api.us-west-2.amazonaws.com/SAMPLE_ALIAS/sample_lambda`
 
 You should see `"FOUR"` as the output, just as if you had invoked the Lambda directly.
 
@@ -610,11 +610,11 @@ d. Apply the plan: `terraform apply --var-file="../aws_secrets.tfvars" -var-file
 
 After running terraform your new alias will be part of the url path: 
 
-`https://<rest_api_id>.execute-api.us-east-1.amazonaws.com/NEW_ALIAS/sample_lambda`
+`https://<rest_api_id>.execute-api.us-west-2.amazonaws.com/NEW_ALIAS/sample_lambda`
 
 You can then curl the new alias with the curl call below.
 
-`curl -d '{"input": 4}' -H "Content-Type: application/json" -X POST https://<rest_api_id>.execute-api.us-east-1.amazonaws.com/NEW_ALIAS/sample_lambda`
+`curl -d '{"input": 4}' -H "Content-Type: application/json" -X POST https://<rest_api_id>.execute-api.us-west-2.amazonaws.com/NEW_ALIAS/sample_lambda`
 
 e. You should see `"FOUR"` as the curl result.
 
@@ -626,11 +626,11 @@ This project is released under the Apache License, Version 2.0. See [LICENSE](LI
 
 ## <a name="TOC-CreateUser"></a>Create AWS User to run Terraform
 
-### 1. Sign into the AWS Console and navigate to IAM Management for US-East-1 ###
+### 1. Sign into the AWS Console and navigate to IAM Management for US-West-2 ###
 
 a. In a browser window, navigate to `https://console.aws.amazon.com/console/home`. Sign into the console.
 
-b. After signing in, navigate to `https://console.aws.amazon.com/iam/home?region=us-east-1#/home`. This is where we will create the user we need to run Terraform to manage our AWS Infrastructure.
+b. After signing in, navigate to `https://console.aws.amazon.com/iam/home?region=us-west-2#/home`. This is where we will create the user we need to run Terraform to manage our AWS Infrastructure.
 
 Now that you are signed in, we create the user.
 

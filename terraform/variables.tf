@@ -8,7 +8,7 @@ variable "env" {
 
 variable "region" {
   description = "The AWS region for the infrastructure to be created in"
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
 variable "bucket" {

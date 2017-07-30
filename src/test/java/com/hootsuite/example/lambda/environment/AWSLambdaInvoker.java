@@ -25,7 +25,7 @@ class AWSLambdaInvoker implements LambdaGenerator {
 
         awsLambda = AWSLambdaClientBuilder
                 .standard()
-                .withRegion(Regions.US_EAST_1)
+                .withRegion(Regions.US_WEST_2)
                 .withCredentials(new AWSLambdaCredentialsProvider())
                 .build();
 
