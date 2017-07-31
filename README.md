@@ -764,7 +764,7 @@ b. From the root project directory run:
 
 You should see that the build is successful and we now have a new alias, `NEW_ALIAS`, for our Lambda function.
 
-	![New Alias](images/new_Alias.png)
+![New Alias](images/new_Alias.png)
 
 Next we will add two blocks to the `terraform/deployments.tf` file. Whenever you wish to invoke a new alias from the API Gateway, you will need to add these two blocks.
 
