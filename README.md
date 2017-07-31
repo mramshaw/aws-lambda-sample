@@ -2,14 +2,14 @@
 
 This looked like a very well-documented example of how to deploy [AWS Lambda Functions](https://aws.amazon.com/lambda/), so I decided to follow it as a learning exercise. There are a great number of steps and I thought I would learn something about [Terraform](https://www.terraform.io/) at the very least. The overall intent seems to be a __serverless__ deployment to a __CI__ (Continuous Integration) staging area which includes automated builds and testing followed by a RESTful endpoint for mobile integration, but it's a very long blog post and I may have read the intention(s) incorrectly. The software used was as follows:
 
-	Software  | Installed version
-	--------  | -----------------
-	boto3     | 1.4.4
-	Java      | openjdk version "1.8.0_131"
-	pip       | 9.0.1
-	Python    | 2.7.12
-	pyyaml    | 3.12
-	Terraform | 0.9.11
+Software  | Installed version
+--------  | -----------------
+boto3     | 1.4.4
+Java      | openjdk version "1.8.0_131"
+pip       | 9.0.1
+Python    | 2.7.12
+pyyaml    | 3.12
+Terraform | 0.9.11
 
 Just for fun the code was modified to run in the US-WEST-2 region instead of the US-EAST-1 region.
 
@@ -60,8 +60,8 @@ The AWS Lambda function is managed with Gradle scripts invoking [boto3](https://
 
 * If you do not have `python`, you will need to install it, instructions can be found [here](https://www.python.org/)
 * If you do not have `pip`, you will need to install it, instructions can be found [here](https://pip.pypa.io/en/stable/installing/)
-* You will need to install `boto3`.
-** From your terminal, enter: `sudo pip install boto3==1.4.4`.
+* You will need to install `boto3`:
+	* From your terminal, enter: `sudo pip install boto3==1.4.4`.
 
 __Update (July 2017):__
 
@@ -75,8 +75,8 @@ Many additional dependencies were installed as well. The current version was sti
 
 This is a yaml parser for python, used to read the AWS credentials from the configuration files.
 
-* You will need to install `pyyaml`.
-** From your terminal, enter: `sudo pip install pyyaml==3.12`.
+* You will need to install `pyyaml`:
+	* From your terminal, enter: `sudo pip install pyyaml==3.12`.
 
 __Update (July 2017):__
 
@@ -90,9 +90,9 @@ The current version was still __3.12__.
 
 The infrastructure in this project is managed using HashiCorp's [Terraform](https://www.terraform.io/)
 
-* You will need to install `terraform`.
-** You can download it from HashiCorp [here](https://www.terraform.io/downloads.html)
-** On macOS, you can also install it with [brew](https://brew.sh/) by entering in the terminal: `brew install terraform`.
+* You will need to install `terraform`:
+	* You can download it from HashiCorp [here](https://www.terraform.io/downloads.html)
+	* On macOS, you can also install it with [brew](https://brew.sh/) by entering in the terminal: `brew install terraform`.
 
 __Update (July 2017):__
 
@@ -296,7 +296,7 @@ This build process is not reassuring:
 
 The upload can be verified from the S3 console:
 
-	![Uploaded to S3](images/uploaded_to_S3.png)
+![Uploaded to S3](images/uploaded_to_S3.png)
 
 [It may be necessary to hit the refresh icon a few times.]
 
@@ -312,7 +312,7 @@ Currently, our AWS Lambda function uses an artifact uploaded directly to AWS Lam
 
 a. In the `terraform/main.tf` file. Comment out line 4 with `//` or `#`:
 
-`   filename = "../build/distributions/sample-lambda-1.0.0.zip"`
+	   filename = "../build/distributions/sample-lambda-1.0.0.zip"
 
 b. Also uncomment lines 5 and 6 in the file.
 
@@ -324,19 +324,18 @@ c. Switch to the `terraform` directory in your terminal:
 	cd terraform
 
 d. We will now re-run the planning stage to change the infrastructure. Enter the following in the terminal:
-    `terraform plan -var-file="../aws_secrets.tfvars" -var-file="env/staging.tfvars"`
+
+	$ terraform plan -var-file="../aws_secrets.tfvars" -var-file="env/staging.tfvars"
 
 e. This time, you should only see that there is only 1 resource to change:
 
-```
-~ aws_lambda_function.sample_lambda
-    filename:  "../build/distributions/sample-lambda-1.0.0.zip" => ""
-    s3_bucket: "" => "<your bucket name>"
-    s3_key:    "" => "sample_lambda/staging/sample-lambda-1.0.0.zip"
-
-
-Plan: 0 to add, 1 to change, 0 to destroy.
-```
+	~ aws_lambda_function.sample_lambda
+	    filename:  "../build/distributions/sample-lambda-1.0.0.zip" => ""
+	    s3_bucket: "" => "<your bucket name>"
+	    s3_key:    "" => "sample_lambda/staging/sample-lambda-1.0.0.zip"
+	
+	
+	Plan: 0 to add, 1 to change, 0 to destroy.
 
 f. If the plan is successful, apply it by entering the following command into the terminal:
 
@@ -410,7 +409,7 @@ The two tests should still be failing since we haven't yet uploaded the new code
 
 #### 11. Updating the AWS Lambda code ####
 
-a. Update the version of the code in the `build.gradle` file on line 6 to from __1.0.0__ to __1.0.1__:
+a. Update the version of the code in the `build.gradle` file on line 6 from __1.0.0__ to __1.0.1__:
 
 	buildscript {
 	    ext {
@@ -548,11 +547,11 @@ One test should fail.
 
 If we check our __S3__ dashboard, we will see that all three versions are present:
 
-	![S3 versions](images/lambda_Versions.png)
+![S3 versions](images/lambda_Versions.png)
 
 If we check our __Lambda__ dashboard, we will see that our alias still points to __1.0.1__:
 
-	![Lambda Alias](images/latest_Alias.png)
+![Lambda Alias](images/latest_Alias.png)
 
 Now that we have set our Java client to invoke the function alias, we will need to update the alias to fix the broken test.
  
@@ -597,7 +596,7 @@ You should see that the build succeeded with the following snippet in the output
 
 If we check our __Lambda__ dashboard, we will see that our alias now points to __1.0.2__:
 
-	![Alias updated](images/alias_Update.png)
+![Alias updated](images/alias_Updated.png)
 
 c. Now run the unit tests again by running:
 
@@ -865,25 +864,25 @@ Now that you are signed in, we create the user.
 
 a. Click on `Users` in the side bar, see the image below.
 
-	![IAM User](images/1_users.png)
+![IAM User](images/1_users.png)
 
 b. Click on `Add user` as shown in the image below.
 
-	![Add User](images/2_add_user.png)
+![Add User](images/2_add_user.png)
 
 c. Type the name of the user `sample_lambda_manager` into the User name field and check the `Programmatic access` box. See the image below.
 
 d. Click the `Next: Permissions` box to proceed.
 
-	![User Details](images/3_user_name.png)
+![User Details](images/3_user_name.png)
 
 e. As shown in the image below, tap on `Attach existing policies directly`.
 
-	![Attach Policy](images/4_attach_policy.png)
+![Attach Policy](images/4_attach_policy.png)
 
 f. Now click the `Create policy` button as shown below.
 
-	![Create Policy](images/5_create_policy.png)
+![Create Policy](images/5_create_policy.png)
 
 This should open a new browser window where we will create the policy that your Terraform user will need to create and manage the project infrastructure.
 
@@ -891,11 +890,11 @@ This should open a new browser window where we will create the policy that your 
 
 a. In the new tab, click `Select` next to `Create Your Own Policy` as shown below.
 
-	![Create Policy further](images/6_create_policy.png)
+![Create Policy further](images/6_create_policy.png)
 
 b. In the next screen, enter the name of the policy `sample_lambda_terraform` and a short description. This is shown in the image below.
 
-	![Policy Details](images/7_policy.png)
+![Policy Details](images/7_policy.png)
 
 c. Where it says `<paste policy here>`, paste the JSON snippet below.
 
@@ -1012,7 +1011,7 @@ Now that we have created the policy we will attach it to the user.
 
 a. Click `Refresh` to refresh the list of policies to include our newly created policy.
 
-	![refresh](images/8_refresh.png)
+![refresh](images/8_refresh.png)
 
 b. Type the name of our policy as shown below: `sample_lambda_terraform`.
 
@@ -1020,16 +1019,15 @@ __Update (July 2017):__
 
 A simpler option is to select "Customer managed" from the Filter pulldown.
 
-<img src="./images/9_type_policy.png"/>
-	![Type Policy](images/9_type_policy.png)
+![Type Policy](images/9_type_policy.png)
 
 c. Check the box next to the policy as shown below and then click `Next: Review`.
 
-	![Review Policy](images/10_click_review.png)
+![Review Policy](images/10_click_review.png)
 
 d. On the next screen, click `Create User` as shown below.
 
-	![Accept Addition](images/11_accept.png)
+![Accept Addition](images/11_accept.png)
 
 Now we have our user, we only need to copy the keys to this project.
 
@@ -1037,7 +1035,7 @@ Now we have our user, we only need to copy the keys to this project.
 
 a. As shown in the image below, copy the `Access key ID` of the newly created user.
 
-	![Copy Keys](images/12_copy_keys.png)
+![Copy Keys](images/12_copy_keys.png)
 
 b. Open up the `aws_secrets.tfvars` file in the root directory of this project and replace the `<your_access_key>` with your copied access key. The file is shown below:
 
