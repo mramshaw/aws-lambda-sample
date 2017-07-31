@@ -669,7 +669,7 @@ In the previous section we saw that we could create an API Gateway which allowed
 
 In this section we will see how we can set up API Gateway deployments to point to AWS Lambda aliases.
 
-This will allow use to call our API as follows:
+This will allow us to call our API as follows:
 
 	$ curl ... https://<rest_api_id>.execute-api.us-west-2.amazonaws.com/SAMPLE_ALIAS/sample_lambda
 
@@ -687,7 +687,7 @@ a. In the `terraform/deployments.tf` file, uncomment the contents of the file.
 
 There are two blocks in this file, one is the gateway deployment and the other is the permission for the API Gateway to invoke the given Lambda alias.
 
-The first block is used to expose the Lambdas alias through a specified request URL path.
+The first block is used to expose the Lambda's alias through a specified request URL path.
 
 The second is to allow the Lambda function to be invoked through calls to the API Gateway.
 
