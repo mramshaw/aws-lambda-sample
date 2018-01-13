@@ -86,6 +86,8 @@ Installing this into a single-user system (no 'sudo') was problematic, the follo
 
 The current version was still __3.12__.
 
+[Probably a better option is to use JSON instead of YAML for a slightly cleaner implementation.]
+
 #### Terraform ####
 
 The infrastructure in this project is managed using HashiCorp's [Terraform](https://www.terraform.io/)
