@@ -1,6 +1,6 @@
 # Sample AWS Lambda Project #
 
-[![Known Vulnerabilities](https://snyk.io/test/github/mramshaw/aws-lambda-sample/badge.svg?style=plastic)](https://snyk.io/test/github/mramshaw/aws-lambda-sample)
+[![Known Vulnerabilities](https://snyk.io/test/github/mramshaw/aws-lambda-sample/badge.svg?style=plastic)](https://snyk.io/test/github/mramshaw/aws-lambda-sample?style=plastic)
 
 This looked like a very well-documented example of how to deploy [AWS Lambda Functions](https://aws.amazon.com/lambda/), so I decided to follow it as a learning exercise. There are a great number of steps and I thought I would learn something about [Terraform](https://www.terraform.io/) at the very least. The overall intent seems to be a __serverless__ deployment to a __CI__ (Continuous Integration) staging area which includes automated builds and testing followed by a RESTful endpoint for mobile integration, but it's a very long blog post and I may have read the intention(s) incorrectly. The software used was as follows:
 
