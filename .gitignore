@@ -1,14 +1,10 @@
-# User-specific stuff:
-*.iml
 .gradle
-/local.properties
-.idea/
-.DS_Store
+aws_credentials.yml
+aws_secrets.tfvars
+AWSLambdaCredentialsProvider.java
 /build
-/captures
-/out/
-
-*.iws
-
+gradle.properties
+main.tf
+terraform/env
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
