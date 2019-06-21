@@ -6,9 +6,33 @@
 
 This looked like a very well-documented example of how to deploy [AWS Lambda Functions](https://aws.amazon.com/lambda/),
 so I decided to follow it as a learning exercise. There are a great number of steps and I thought I would learn something
-about [Terraform](https://www.terraform.io/) at the very least. The overall intent seems to be a __serverless__ deployment
-to a __CI__ (Continuous Integration) staging area which includes automated builds and testing followed by a RESTful endpoint
-for mobile integration, but it's a very long blog post and I may have read the intention(s) incorrectly.
+about [Terraform](https://www.terraform.io/) at the very least. One interesting feature is that the code is uploaded to S3
+and then migrated to Lambda from there.
+
+The overall intent seems to be a __serverless__ deployment to a __CI__ (Continuous Integration) staging area which includes
+automated builds and testing followed by a RESTful endpoint for mobile (specifically Android) integration, but it's a very
+long blog post and I may have read the intention(s) incorrectly.
+
+All of this seems to be a response to the [AWS Serverless Application Model (SAM)](http://github.com/awslabs/serverless-application-model)
+but rather than use [AWS CloudFormation](http://aws.amazon.com/cloudformation/) the current effort addresses the goals of
+[Infrastructure as code (IaC)](https://en.wikipedia.org/wiki/Infrastructure_as_Code) via a homegrown combination of __Python__,
+__boto__, and __Terraform__.
+
+The blog post discusses using Java for Twitter searches - the code here does not address this but seems to largely a spike
+(or proof of concept) to verify that the Java server-side code will be able to respond correctly to the client-side code.
+The post also covers Twelve-Factoring the code so that it will respond correctly in both ___Staging___ and ___Production___
+environments (in the code contained in this repo, this will be addressed with the __API Gateway__).
+
+Lambda Functions can be set up with __Aliases__, which allow for decoupling client code from a specific Lambda Function,
+thus allowing for multiple versions of the Lambda Function. The version addressed by the Alias may be updated or even
+rolled-back - allowing greater flexibility and more advanced decoupling.
+
+Lambda Functions may be configured with Environment Variables (this allowing Twelve-Factoring the code) but Staging and
+Production environments generally have different release cycles - so this is not a substitute for having completely
+separate Lambda Functions for both Staging and Production.
+
+This separation of Staging and Production is easily addressed with AWS API Gateway, which can also define RESTful
+endpoints and interactions.
 
 The software used was as follows:
 
@@ -37,7 +61,7 @@ Just for fun the code was modified to run in the US-WEST-2 region instead of the
 
 ## <a name="TOC-Introduction"></a>Introduction ##
 
-This project is a "Hello, World!" version of the architecture described in [this blog post](http://code.hootsuite.com/accelerating-cross-platform-development-with-serverless-microservices/).
+This project is a "Hello, World!" version of the architecture described in [this blog post](http://medium.com/hootsuite-engineering/accelerating-cross-platform-development-with-serverless-microservices-d7b54bd2dce5).
 
 With it you can create an [AWS Lambda Function](https://aws.amazon.com/lambda/) and surrounding IAM infrastructure with [Terraform](https://www.terraform.io/).
 
@@ -197,7 +221,7 @@ d. If the plan is successful, apply it by entering the following command into th
 
 	$ terraform apply -var-file="../aws_secrets.tfvars" -var-file="env/staging.tfvars"
 
-[This may take a minute of two to execute.]
+[This may take a minute or two to execute.]
 
 e. If the apply is successful, you should see the following:
 
