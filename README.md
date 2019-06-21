@@ -18,13 +18,13 @@ but rather than use [AWS CloudFormation](http://aws.amazon.com/cloudformation/) 
 [Infrastructure as code (IaC)](https://en.wikipedia.org/wiki/Infrastructure_as_Code) via a homegrown combination of __Python__,
 __boto__, and __Terraform__.
 
-The blog post discusses using Java for Twitter searches - the code here does not address this but seems to largely a spike
+The blog post discusses using Java for Twitter searches - the code in this repo doesn't address this but seems to be a spike
 (or proof of concept) to verify that the Java server-side code will be able to respond correctly to the client-side code.
 The post also covers Twelve-Factoring the code so that it will respond correctly in both ___Staging___ and ___Production___
 environments (in the code contained in this repo, this will be addressed with the __API Gateway__).
 
 Lambda Functions can be set up with __Aliases__, which allow for decoupling client code from a specific Lambda Function,
-thus allowing for multiple versions of the Lambda Function. The version addressed by the Alias may be updated or even
+thus allowing for multiple versions of the Lambda Function. The version addressed by the Alias may be easily updated or
 rolled-back - allowing greater flexibility and more advanced decoupling.
 
 Lambda Functions may be configured with Environment Variables (this allowing Twelve-Factoring the code) but Staging and
